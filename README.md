@@ -1,16 +1,67 @@
 # mixer
 
-A new Flutter project.
+A DJ-ing tool to assist (me) in learning and mapping out what songs are good for mixing together.
 
-## Getting Started
+## How to use
 
-This project is a starting point for a Flutter application.
+It's pretty simple: add all your songs to the library and then start pairing.
 
-A few resources to get you started if this is your first Flutter project:
+If you want to speed things up a little and avoid adding the songs one-by-one, there is the ability to scan a folder of songs (MP3, WAV, etc.) and import them into the application. However, this has the caveat that the songs do not have BPM, Key, or Genre information (even if it is present in the ID3 metadata; this is a limitation of the file scanner).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Conversely, there is also the ability to import a JSON file with song information. The JSON has to have the following schema:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```json
+{
+    "tracks": [
+        {
+            "artists": "Lorem",
+            "title": "Ipsum",
+            "album": "Dolor",
+            "genre": "Sit",
+            "tempo": "150",
+            "key": "Cm",
+            "composer": "Amet"
+        },
+        {
+            "artists": "Lorem2",
+            "title": "Ipsum",
+            "album": "Dolor",
+            "genre": "Sit",
+            "tempo": "150",
+            "key": "Cm",
+            "composer": "Amet"
+        },
+    ]
+}
+```
+
+## Application database
+
+The song data is stored into a JSON file. You can view said file at in your "Documents" folder, under "mixxer". By editing this JSON, you are essentially editing the database. The schema of the databse is as follows:
+
+```json
+{
+    "tracks": {
+        "track_key": {
+            "artists": "string",
+            "title": "string",
+            "album": "string",
+            "genre": "string",
+            "tempo": "string",
+            "key": "string",
+            "composer": "string"
+        }
+    },
+    "edges": [
+        ["track_key1", "track_key2"]
+    ]
+}
+```
+
+## Screenshots
+
+![](./screenshots/MainScreen.png "Main Screen")
+
+![](./screenshots/AddSong.png "Add Song")
+
+![](./screenshots/PairSong.png "Pair Song")
